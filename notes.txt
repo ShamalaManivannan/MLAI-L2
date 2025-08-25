@@ -1,0 +1,7 @@
+Import dataset
+Data preprocessing - remove/replace null values , covert string to integer
+Data analysis - ip/op
+Split the data - train (75 to 80%) and test (20 to 25%)
+Select an appropriate ML algorithm 
+Train the the ML with data
+Predict and calculate accuracy, error
