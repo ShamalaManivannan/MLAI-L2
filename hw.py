@@ -1,26 +1,20 @@
-#Multiple Variable Regression 
 import numpy as np
 import pandas as pd
 
-#Import Dataset
-data = pd.read_csv("titanic.csv")
+data = pd.read_csv("iris.csv")
 
 print(data.head())
 print(data.info())
 
-#Data Preprocessing - chaning string value to int
-data["Sex"] = data["Sex"].map({'male' : 0,'female' : 1})
+data["species"] = data["species"].map({'setosa' : 0,'versicolor' : 1, 'virginica' : 2})
 print(data.info())
 
-#Data Analysis - naming the inputs and outputs
-X = data[["Age","Pclass","Sex"]]
-Y = data["Survived"]
+x = data[["sepal_length","sepal_width","petal_length","petal_width"]]
+y = data["species"]
 
-#Split the data to test and train
 from sklearn.model_selection import train_test_split
-x_train,x_test,y_train,y_test = train_test_split(X,Y,test_size = 0.2, random_state = 5)
+x_train,x_test,y_train,y_test = train_test_split(x,y,test_size = 0.25, random_state = 5)
 
-#Select Appropriate ML Algorithm
 
 #Multi-Variable Regression
 from sklearn.linear_model import LinearRegression
@@ -29,8 +23,8 @@ reg = LinearRegression()
 reg=reg.fit(x_train,y_train)
 y_pred = reg.predict(x_test)
 
-#Calculate Error
-from sklearn.metrics import mean_squared_error,accuracy_score
+
+from sklearn.metrics import mean_squared_error
 
 rmse_le = np.sqrt(mean_squared_error(y_test,y_pred))
 print("RMSE of Multi-Variable Regression =", rmse_le)
@@ -48,6 +42,5 @@ poly_reg.fit(x_train_poly,y_train)
 
 y_pred_poly = poly_reg.predict(x_test_poly)
 
-#Calculate Error
 rmse_poly = np.sqrt(mean_squared_error(y_test,y_pred_poly))
-print("RMSE of Polynomial Regression =", rmse_poly)
+print("RMSE of Polynomial Regression =", rmse_poly)             
